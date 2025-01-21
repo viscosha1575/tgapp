@@ -2,14 +2,13 @@
 const admin = require('firebase-admin');
 const path = require('path');
 
-// Initialize Firebase Admin with your service account JSON
-const serviceAccount = require('./pocoverse-44c45-firebase-adminsdk-fbsvc-8d39687999.json');
+// Загрузка ключей из переменной окружения
+const serviceAccount = JSON.parse(process.env.FIREBASE_ADMIN_SDK);
 
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
+  credential: admin.credential.cert(serviceAccount),
 });
 
-// Get Firestore instance
 const db = admin.firestore();
 
 // Telegram Web App initialization
